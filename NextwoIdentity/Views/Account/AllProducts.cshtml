@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<h1>All Products</h1>
+
+@if (User.IsInRole("admin"))
+{
+    <a asp-action="CreateProduct" asp-controller="Account" class="btn btn-primary btn-sm"> Create new Product</a>
+}
+
+<table class="table table-striped">
+
+    <tr>
+        <th> @Html.DisplayNameFor(c=>c.ProductName) </th>
+        <th> @Html.DisplayNameFor(c=>c.Category!.CategoryName) </th>
+
+        <th>operations</th>
+
+
+    </tr>
+
+    @foreach (var pr in Model)
+    {
+        <tr>
+
+            <td> @pr.ProductName</td>
+            <td> @pr.Category!.CategoryName</td>
+
+
+
+            <td>
+
+
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-route-id="@pr.ProductId" asp-action="EditProduct" asp-controller="Account"class="btn btn-primary">Edit</a>
+                    <a asp-route-id="@pr.ProductId" asp-action="DeleteProduct" asp-controller="Account" class="btn btn-warning">Delete</a>
+
+
+                }
+                else
+                {
+
+                    <a asp-route-id ="@pr.ProductId" asp-action="ProductDetails" asp-controller="Account" class="btn btn-primary">Details</a>
+
+                }
+
+
+
+            </td>
+
+
+        </tr>
+
+    }
+
+
+
+
+
+</table>

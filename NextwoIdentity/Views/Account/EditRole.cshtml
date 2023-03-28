@@ -1,0 +1,75 @@
+﻿@model NextwoIdentity.Models.ViewModels.EditRoleViewModel
+
+@{
+    ViewData["Title"] = "Edit Role";
+}
+
+<h1>EditRole</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditRole">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleId" class="control-label"></label>
+                <input asp-for="RoleId" readonly class="form-control" />
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="RolesList" asp-controller="Account">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="RolesList">Back to List</a>
+</div>
+
+<!-- ###########to display the users in each role ##########-->
+
+<div class="card">
+    <div class="card-header">
+        Users in this role
+    </div>
+    <div class="card-body">
+
+    @if (Model.Users!.Any())
+    {
+
+        @foreach (var user in Model.Users!)
+        {
+
+                @user <br />
+            }
+
+        }
+        else
+        {
+            <span class="alert alert-warning">no users in this role</span>
+
+        }
+
+       
+
+    </div>
+    <div class="card-footer">
+
+        <a asp-action="ModifyUserInRole" asp-controller="Account" asp-route-id="@Model.RoleId"> 
+            Add/Remove user from this role
+
+        </a>
+
+    </div>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

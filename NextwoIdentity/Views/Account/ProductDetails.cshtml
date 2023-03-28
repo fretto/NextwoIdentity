@@ -1,0 +1,36 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+
+<table class="table table-striped">
+
+    <tr>
+
+        <td> <label asp-for="ProductName"></label>   </td>
+        <td>@Model.ProductName</td>
+
+    </tr>
+    <tr>
+
+        <td> <label asp-for="ProductPrice"></label>   </td>
+        <td>@Model.ProductPrice</td>
+
+    </tr>
+    <tr>
+
+        <td> <label asp-for="ProductDescription"></label>   </td>
+        <td>@Model.ProductDescription</td>
+
+    </tr>
+    
+
+   
+
+
+</table>
+
+<a asp-action="AllProducts" class="btn btn-primary"> back to products</a>

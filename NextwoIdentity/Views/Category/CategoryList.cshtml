@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NextwoIdentity.Models.Category>
+
+@{
+    ViewData["Title"] = "CategoryList";
+}
+
+<h1>Category List</h1>
+
+<p>
+    <a  class="btn btn-primary "asp-action="CreateCategory">Create New category</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="btn btn-success" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a>
+
+                        <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
+
+                        <a class="btn btn-danger" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
+
+                    }else
+                    
+                    {
+                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
+ 
+
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

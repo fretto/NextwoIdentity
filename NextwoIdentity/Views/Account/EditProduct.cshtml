@@ -1,0 +1,44 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1>Edit product</h1>
+
+
+<form method="post" asp-action="EditProduct">
+
+    @Html.HiddenFor(x=>x.ProductId);
+
+    <table class="table table-bordered">
+
+        <tr>
+
+            <td> <label asp-for="ProductName"></label>   </td>
+            <td>
+                <input asp-for="ProductName" class="form-control" placeholder="enter new name" />
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td><label asp-for="Category"></label></td>
+            <td><select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control"></select></td>
+
+        </tr>
+
+        <tr>
+            <td colspan="2">
+
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <a asp-action="AllProducts" asp-controller="Account">Cancel</a>
+
+            </td>
+        </tr>
+    </table>
+
+
+
+</form>
+
